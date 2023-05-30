@@ -1,9 +1,9 @@
-data_dir: /media/bowen/e25c9489-2f57-42dd-b076-021c59369fec/catkin_ws/src/iros20_dataset/video_rosbag/IROS_SELECTED/FINISHED_LABEL.iros_submission_version/bleach0
-mask_dir: '/media/bowen/e25c9489-2f57-42dd-b076-021c59369fec/catkin_ws/src/iros20_dataset/video_rosbag/IROS_SELECTED/FINISHED_LABEL.iros_submission_version/bleach0/masks'
-model_name: 021_bleach_cleanser
-model_dir: /media/bowen/e25c9489-2f57-42dd-b076-021c59369fec/DATASET/YCB_Video_Dataset/CADmodels/021_bleach_cleanser/textured_simple.obj
+data_dir: '/home/sarthak/dataset/YCBInEOAT/cracker_box_reorient'
+mask_dir: '/home/sarthak/dataset/YCBInEOAT/cracker_box_reorient/masks'
+model_name: fdfsdfsdfsfdsfsd
+model_dir: /home/sarthak/dataset/YCBInEOAT/models/021_bleach_cleanser_berkeley_meshes/021_bleach_cleanser/tsd
 debug_dir: /tmp/BundleTrack/
-LOG: 0
+LOG: 2
 port: '5555'
 
 depth_processing:
@@ -55,8 +55,8 @@ ransac:
   num_sample: 3
   inlier_dist: 0.01
   inlier_normal_angle: 45
-  max_trans_neighbor: 0.05   #ransac model estimated pose shouldnt be too far
-  max_rot_deg_neighbor: 45
+  max_trans_neighbor: 0.05   #ransac model estimated pose shouldnt be too far original 0.05
+  max_rot_deg_neighbor: 45 #original 45
   max_trans_no_neighbor: 0.02
   max_rot_no_neighbor: 10
 

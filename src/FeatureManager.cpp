@@ -130,6 +130,7 @@ void SiftManager::vizKeyPoints(std::shared_ptr<Frame> frame)
   cv::imwrite(out_dir+"keypoints.jpg", out);
 
   const auto &kpts = frame->_keypts;
+  std::cout<<"number of keypoints = "<<kpts.size()<<std::endl;
   std::ofstream ff(out_dir+"keypoints.txt");
   for (int i=0;i<kpts.size();i++)
   {

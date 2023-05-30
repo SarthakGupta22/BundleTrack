@@ -115,7 +115,7 @@ void Bundler::processNewFrame(std::shared_ptr<Frame> frame)
     _fm->forgetFrame(frame);
     return;
   }
-
+  _fm->vizKeyPoints(frame); // added line after reading one of the issues.
   if (_frames.size()>0)
   {
     _fm->findCorres(frame, last_frame);

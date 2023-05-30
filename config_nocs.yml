@@ -5,7 +5,7 @@ use_6pack_datalist: True
 model_name: bottle_red_stanford_norm
 debug_dir: /tmp/BundleTrack/   # The path to save results
 
-LOG: 0
+LOG: 5 
 port: '5555'
 seg_dilation_iter: 3
 

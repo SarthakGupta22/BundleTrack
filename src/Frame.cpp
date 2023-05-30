@@ -107,7 +107,9 @@ void Frame::updateDepthCPU()
 void Frame::updateDepthGPU()
 {
   const int n_pixels = _H*_W;
+  std::cout<<_depth.rows<<" "<<_depth.cols<<std::endl;
   cv::Mat depth_flat = _depth.reshape(1,1);
+  
   cudaMemcpy(_depth_gpu, depth_flat.data, n_pixels*sizeof(float), cudaMemcpyHostToDevice);
 }
 

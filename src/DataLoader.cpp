@@ -350,6 +350,7 @@ std::shared_ptr<Frame> DataLoaderYcbineoat::next()
   std::string color_file = _color_files[_id];
   std::cout<<"color file: "<<color_file<<std::endl;
   cv::Mat color = cv::imread(color_file);
+  
   std::string index_str;
   {
     std::vector<std::string> strs;
@@ -357,15 +358,16 @@ std::shared_ptr<Frame> DataLoaderYcbineoat::next()
     boost::split(strs, strs.back(), boost::is_any_of("."));
     index_str = strs[0];
   }
-
   cv::Mat depth_raw;
   std::string depth_dir = data_dir+"/depth/"+index_str+".png";
   Utils::readDepthImage(depth_raw, depth_dir);
 
   cv::Mat depth_sim;
+  Utils::readDepthImage(depth_sim, depth_dir);
   depth_sim = depth_raw.clone();
 
   cv::Mat depth;
+  Utils::readDepthImage(depth, depth_dir);
   depth = depth_raw.clone();
 
   Eigen::Matrix4f pose(Eigen::Matrix4f::Identity());
@@ -376,8 +378,29 @@ std::shared_ptr<Frame> DataLoaderYcbineoat::next()
 
   Eigen::Vector4f roi;
   roi << 99999,0,99999,0;
+  // if (color.isContinuous())
+  // {
+  //   std::cout<<"continuous color image"<<std::endl;
+  //   std::cout<<color.rows<<" "<<color.cols<<std::endl;
+  // }
+  // if (depth.isContinuous())
+  // {
+  //   std::cout<<"continuous depth image"<<std::endl;
+  //   std::cout<<depth.rows<<" "<<depth.cols<<std::endl;
+  // }
+  // if (depth_raw.isContinuous())
+  // {
+  //   std::cout<<"continuous depth_raw image"<<std::endl;
+  //   std::cout<<depth_raw.rows<<" "<<depth_raw.cols<<std::endl;
+  // }
+  // if (depth_sim.isContinuous())
+  // {
+  //   std::cout<<"continuous depth_sim image"<<std::endl;
+  //   std::cout<<depth_sim.rows<<" "<<depth_sim.cols<<std::endl;
+  // }
 
   std::shared_ptr<Frame> frame(new Frame(color,depth,depth_raw,depth_sim, roi, pose, _id, index_str.substr(_start_digit,index_str.size()-_start_digit), _K, yml, NULL, _real_model));
+  // std::shared_ptr<Frame> frame(new Frame(color,depth_raw,depth_raw,depth_raw, roi, pose, _id, index_str.substr(_start_digit,index_str.size()-_start_digit), _K, yml, NULL, _real_model));
   _id++;
 
   return frame;

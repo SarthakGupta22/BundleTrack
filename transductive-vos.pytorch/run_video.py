@@ -108,7 +108,7 @@ def run_one_video(model,args):
 	frame_idx = 0
 	with torch.no_grad():
 		for i, color_file in enumerate(color_files):
-			frame_id = int(os.path.basename(color_file)[:4])
+			# frame_id = int(os.path.basename(color_file)[:4])
 			color = cv2.imread(color_file)
 			input = cv2.cvtColor(color,cv2.COLOR_BGR2RGB)
 			input = rgb_normalize(input).unsqueeze(0)
